@@ -75,3 +75,20 @@ filter()  -- title__startswith, title__istartswith, contains, icontains, lt, gt,
 all()
 save()
 delete()
+
+
+migration
+Django ORM을 통해서 생성된 table을 migration을 통해서 자동생성&변경
+pytho object --> table로 전환
+    commend:
+    python manage.py makemigrations
+    python manage.py migrate
+
+
+관리자 계정 생성
+    commend:
+    python manage.py createsuperuser
+
+    todoadmin/********
+
+urls: http://127.0.0.1:8000/admin/

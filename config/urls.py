@@ -19,6 +19,10 @@ urlpatterns = [
         "users/",
         include("todolist.users.urls", namespace="users"),
     ),
+    path(
+        "todos/",
+        include("todolist.todos.urls", namespace="todos"),
+    ),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(
