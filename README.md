@@ -114,3 +114,20 @@ todos/${todoId}/cancel/
 todos/search/?term={term}
     get: title, created_at, update_at 조회 후 목록 반환.
 
+
+# Frontend
+ yarn global add create-react-app
+ create-react-app frontend
+ cd ./frontend
+ 
+ yarn add html-webpack-plugin
+
+ yarn eject
+
+SCSS plugin설치.
+ sass loader && node-sass설치
+ yarn add sass-loader node-sass
+
+ scss loader를 환 환경설정 파일 수정
+ webpack.config.dev.js
+ webpack.config.prop.js
