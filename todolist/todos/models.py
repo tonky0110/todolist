@@ -22,12 +22,12 @@ class Todo(TimeStampedModel):
     """ Todo Model """
 
     STATUS_CHOICES = (
-        ('todo', 'Todo'),
+        ('doing', 'Doing'),
         ('done', 'Done')
     )
 
     title = models.TextField()
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='todo')
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='doing')
     creator = models.ForeignKey(user_models.User, on_delete=models.PROTECT, null=True)
 
 #    @property
@@ -47,7 +47,6 @@ class Refer(TimeStampedModel):
 
     before = models.ForeignKey(Todo, on_delete=models.PROTECT, null=True, related_name="after")
     after  = models.ForeignKey(Todo, on_delete=models.PROTECT, null=True, related_name="before")
-    useYn = models.BooleanField(default=True)
     creator = models.ForeignKey(user_models.User, on_delete=models.PROTECT, null=True)
 
     def ___str__(self):

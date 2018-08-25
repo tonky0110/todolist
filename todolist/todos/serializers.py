@@ -15,7 +15,6 @@ class ReferSerializer(serializers.ModelSerializer):
                 'updated_at',
                 'before',
                 'after',
-                "useYn",
                 'creator',
             )
 
@@ -45,4 +44,16 @@ class InputTodoSerializer(serializers.ModelSerializer):
         model = models.Todo
         fields = (
             'title',
+        )
+
+class InputReferSerializer(serializers.ModelSerializer):
+    # creator = UserSerializer(read_only=True)
+    after = TodoSerializer(read_only=True)
+    before = TodoSerializer(read_only=True)
+    class Meta:
+        model = models.Todo
+        fields = (
+            'creator',
+            'after',
+            'before',
         )

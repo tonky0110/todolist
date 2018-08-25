@@ -8,6 +8,11 @@ urlpatterns = [
          view=views.Todos.as_view(),
          name='list'
      ),
+     url(
+         regex=r'^$',
+         view=views.Todos.as_view(),
+         name='add_todo'
+     ),
     url(
         regex=r'^(?P<todo_id>[0-9]+)/$',
         view=views.TodoDetail.as_view(),
@@ -18,11 +23,11 @@ urlpatterns = [
         view=views.DoneTodo.as_view(),
         name='done_todo'
     ),
-#     url(
-#         regex=r'^(?P<todo_id>[0-9]+)/cancel/$',
-#         view=views.CancelTodo.as_view(),
-#         name='cancel_todo'
-#     ),
+    url(
+        regex=r'^(?P<todo_id>[0-9]+)/cancel/$',
+        view=views.CancelTodo.as_view(),
+        name='cancel_todo'
+    ),
 #     url(
 #         regex=r'^search/$',
 #         view=views.Search.as_view(),
