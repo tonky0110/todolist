@@ -92,3 +92,25 @@ pytho object --> table로 전환
     todoadmin/********
 
 urls: http://127.0.0.1:8000/admin/
+
+
+
+REST API
+todos/
+    get: 사용자가 등록한 모든 todo 목록조회(paging 처리는 추가 수정에정))
+    post: 신규 todo 등록
+
+todos/${todoId}/
+    get: todo detail 조회
+    put: todo 수정(refer(선행todo) 항목 추가 및 삭제 처리 포함.)
+    delete: todo삭제
+
+todos/${todoId}/done/
+    put: todo 완료 처리(선행 todo 상태(doing) 확인 후 완료가능여부 확인.)
+
+todos/${todoId}/cancel/
+    put: todo 완료 취소 처리(후행 todo 상태(done)) 확인 후 완료가능여부 확인.)
+
+todos/search/?term={term}
+    get: title, created_at, update_at 조회 후 목록 반환.
+

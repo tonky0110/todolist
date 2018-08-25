@@ -19,6 +19,11 @@ urlpatterns = [
         name='todo_detail'
     ),
     url(
+        regex=r'^(?P<todo_id>[0-9]+)/$',
+        view=views.TodoDetail.as_view(),
+        name='delete_todo'
+    ),
+    url(
         regex=r'^(?P<todo_id>[0-9]+)/done/$',
         view=views.DoneTodo.as_view(),
         name='done_todo'

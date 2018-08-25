@@ -139,7 +139,27 @@ class TodoDetail(APIView):
                 return Response(
                     data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-            
+
+    def delete(self, request, todo_id, format=None):
+        user = request.user
+        print(user)
+        todo = self.find_own_todo(todo_id, user)
+        print(todo)
+
+        if todo is None:    
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            after_refers = models.Refer.objects.filter(creator=user, before=todo)
+            for after_todo in after_refers:
+                print("after_todo ---- ", after_todo)
+                after_todo.delete()
+            todo.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except models.Refer.DoesNotExist:
+            todo.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 # done 처리 프로세스
