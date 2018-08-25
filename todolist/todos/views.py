@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from . import models, serializers
-
+import datetime
 
 class Todos(APIView):
     def get(self, request, format=None):
@@ -216,10 +216,60 @@ class CancelTodo(APIView):
             
 
             
+class Search(APIView):
+    def get(self, request, format=None):
+
+        user = request.user
+        term = request.query_params.get('terms', None)
+        print(request)
+        print("terms --- ", term)
+        print("type of terms --- ", type(term))
+        todo_list = []
+        if term:
             
-            
+            try:
+                search_title_todos = models.Todo.objects.filter(creator=user, title__icontains=term)
+                print("search_title_todos: ", search_title_todos.count())
+                for search_title_todo in search_title_todos:
+                    todo_list.append(search_title_todo)
+            except models.Todo.DoesNotExist:
+                pass
 
-            
+            if '-' in term:
+                term = term.split("-")
+                print("type of terms --- ", type(term))
+                print("len(term):    ", len(term))
+                if term:
+                    if len(term) == 3:
+                        try:
+                            search_created_todos = models.Todo.objects.filter(
+                                created_at__year=int(term[0]),
+                                created_at__month=int(term[1]),
+                                created_at__day=int(term[2]))
+                            
+                            print("search_created_todos: ", search_created_todos.count())
+                            for search_created_todo in search_created_todos:
+                                todo_list.append(search_created_todo)
+                        except models.Todo.DoesNotExist:
+                            pass
+                        try:
+                            search_updated_todos = models.Todo.objects.filter(
+                                updated_at__year=int(term[0]),
+                                updated_at__month=int(term[1]),
+                                updated_at__day=int(term[2]))
+                            
+                            print("search_updated_todos: ", search_updated_todos.count())
+                            for search_updated_todo in search_updated_todos:
+                                todo_list.append(search_updated_todo)
+                        except models.Todo.DoesNotExist:
+                            pass
+                
+            sorted_list = sorted(todo_list, key=lambda todo: todo.created_at, reverse=True)
+            sorted_list = set(sorted_list)
+            print("sorted_list:  ", sorted_list)
+            serializer = serializers.TodoSerializer(sorted_list, many=True)
+            # serializer = serializers.TodoSerializer(todo_list, many=True)
 
-
-
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)

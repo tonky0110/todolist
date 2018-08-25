@@ -11,7 +11,7 @@ urlpatterns = [
      url(
          regex=r'^$',
          view=views.Todos.as_view(),
-         name='add_todo'
+         name='create_todo'
      ),
     url(
         regex=r'^(?P<todo_id>[0-9]+)/$',
@@ -28,9 +28,9 @@ urlpatterns = [
         view=views.CancelTodo.as_view(),
         name='cancel_todo'
     ),
-#     url(
-#         regex=r'^search/$',
-#         view=views.Search.as_view(),
-#         name='search'
-#     ),
+    url(
+        regex=r'^search/$',
+        view=views.Search.as_view(),
+        name='search'
+    ),
 ]

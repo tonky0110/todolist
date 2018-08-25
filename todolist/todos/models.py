@@ -26,7 +26,7 @@ class Todo(TimeStampedModel):
         ('done', 'Done')
     )
 
-    title = models.TextField()
+    title = models.CharField(max_length=4000)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='doing')
     creator = models.ForeignKey(user_models.User, on_delete=models.PROTECT, null=True)
 
