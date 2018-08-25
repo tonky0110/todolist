@@ -185,6 +185,7 @@ module.exports = {
                         modules: true,
                         localIdentName: '[path][name]__[local]--[hash:base64:5]',
                         sourceMap: shouldUseSourceMap,
+                        camelCase: "dashes"
                       },
                     },
                     {
@@ -212,6 +213,8 @@ module.exports = {
                       loader: require.resolve('sass-loader'),
                       options: {
                         sourceMap: true
+                        data: `@import "${paths.appSrc.replace(/\\/g, '/')}/config/_variables.scss";`
+                        // data: `@import "${pasths.appSrc}/config/_variables.scss"' for mac.
                       }
                     }
                   ],
