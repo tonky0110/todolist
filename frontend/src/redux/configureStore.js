@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
 import { composeWithDevTools } from "redux-devtools-extension";
-import users from "redux/modules/users";
+import user from "redux/modules/user";
 import todos from "redux/modules/todos";
 
 
@@ -21,7 +21,7 @@ if (env === 'development'){
 
 
 const reducer = combineReducers({
-    users,
+    user,
     todos,
     routing: routerReducer
 });
