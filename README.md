@@ -33,6 +33,9 @@ python버블 들어가기
 pipenv shell
 
 
+pipenv lock스킵.
+    pipenv install --skip-lock
+
 데이터베이스설정.
 config/settings/base.py
     ...
