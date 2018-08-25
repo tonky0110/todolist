@@ -131,3 +131,6 @@ SCSS plugin설치.
  scss loader를 환 환경설정 파일 수정
  webpack.config.dev.js
  webpack.config.prop.js
+
+ package.js - proxy 설정.
+ 
