@@ -1,4 +1,20 @@
 import { connect } from 'react-redux';
 import Container from './container';
+import { actionCreators as todoActions } from 'redux/modules/todos';
 
-export default connect()(Container);
+const mapStateToProps = ( state, ownProps ) => {
+    const { todos: { todo } } = state;
+    return { todo };
+}
+
+const mapDispatchToProps = ( dispatch, ownProps ) => {
+    return {
+        getTodo: () => {
+            dispatch(todoActions.getTodo());
+        }
+    }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Container);

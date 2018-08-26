@@ -25,6 +25,10 @@ class TodoSerializer(serializers.ModelSerializer):
     creator = UserSerializer(read_only=True)
     before = ReferSerializer(many=True)
 
+    created_at = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S')
+    updated_at = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S')
+
+
     class Meta:
         model = models.Todo
         fields = (

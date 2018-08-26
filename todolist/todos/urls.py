@@ -6,12 +6,12 @@ urlpatterns = [
      url(
          regex=r'^$',
          view=views.Todos.as_view(),
-         name='list'
+         name='todo'
      ),
      url(
          regex=r'^$',
          view=views.Todos.as_view(),
-         name='create_todo'
+         name='add_todo'
      ),
     url(
         regex=r'^(?P<todo_id>[0-9]+)/$',

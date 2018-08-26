@@ -8,7 +8,7 @@ class Todos(APIView):
     def get(self, request, format=None):
         # todo 목록 조회.
         user = request.user
-        
+        print("※※※※※※※※user: ", user)
         todo_list = []
         
         try:

@@ -1,0 +1,37 @@
+.todo {
+    width: 100%;
+    min-height: 30px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;    
+    background-color: $light-grey;
+    .id {
+        width: 5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .title {
+        width: 25%;
+        display: flex;
+        align-items: center;
+    }
+    .created_at {
+        width: 20%;
+        display: flex;
+        align-items: center;
+    }
+    .updated_at {
+        width: 20%;
+        display: flex;
+        align-items: center;
+    }
+    .status {
+        width: 10%;
+        display: flex;
+        align-items: center;
+    }
+}

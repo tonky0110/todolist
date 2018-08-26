@@ -5,14 +5,13 @@ import styles from './styles.scss';
 import Auth from "components/Auth";
 import Plan from "components/Plan";
 import Navigation from 'components/Navigation';
-import Footer from 'components/Footer';
+
 const App = props => [
     //Nav
     props.isLoggedIn ? <Navigation key={1} /> : null,
     //Routes
     props.isLoggedIn ? <PrivateRoutes key={2} /> : <PublicRoutes key={2} />,
         
-    <Footer key={3} />
 ]
 
 App.propTypes = {
