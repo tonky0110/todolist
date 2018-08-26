@@ -13,6 +13,7 @@ class Container extends Component {
   };
   static propTypes = {
     facebookLogin: PropTypes.func.isRequired,
+    usernameLogin: PropTypes.func.isRequired,
   };
   render() {
     const { username, password } = this.state;
@@ -26,6 +27,7 @@ class Container extends Component {
       />
     );
   }
+  
   _handleInputChange = event => {
     const {
       target: { name, value }
@@ -33,11 +35,16 @@ class Container extends Component {
     this.setState({
       [name]: value
     });
+  
   };
   _handleSubmit = event => {
+    const { usernameLogin } = this.props;
+    const { username, password } = this.state;
     event.preventDefault();
     //redux will be here
+    usernameLogin(username, password);
   };
+
   _handleFacebookLogin = response => {
     // console.log(response);
     const { facebookLogin } = this.props;

@@ -21,28 +21,20 @@ const SignupForm = props => (
     <span className={formStyles.divider}>or</span>
     <form className={formStyles.form} onSubmit={props.handleSubmit}>
         <input
-            type="email"
-            placeholder={"Email"}
-            className={formStyles.textInput}
-            value={props.emailValue}
-            onChange={props.handleInputChange}
-            name="email"
-        />
-        <input
-            type="text"
-            placeholder={"name"}
-            className={formStyles.textInput}
-            value={props.nameValue}
-            onChange={props.handleInputChange}
-            name="name"
-        />
-        <input
             type="text"
             placeholder={"username"}
             className={formStyles.textInput}
             value={props.usernameValue}
             onChange={props.handleInputChange}
             name="username"
+        />
+        <input
+            type="email"
+            placeholder={"Email"}
+            className={formStyles.textInput}
+            value={props.emailValue}
+            onChange={props.handleInputChange}
+            name="email"
         />
         <input
             type="password"
@@ -52,7 +44,19 @@ const SignupForm = props => (
             onChange={props.handleInputChange}
             name="password"
         />
+        <input
+            type="text"
+            placeholder={"name"}
+            className={formStyles.textInput}
+            value={props.nameValue}
+            onChange={props.handleInputChange}
+            name="name"
+        />
+        <input type="submit" value="Sign Up" className={formStyles.button} />
     </form>
+    <p className={formStyles.terms}>
+        By signing up, you agree to our <span>Term & Privacy Policy</span>.
+    </p>
   </div>
 );
 SignupForm.propTypes = {
