@@ -1,26 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
+import TodoDetail from '../TodoDetail/presenter';
 
 const Todo = props => {
     //console.log(props);
     const { 
         id, 
-             title, 
+        title, 
         created_at, 
         updated_at, 
         status, 
         before
     } = props;
-    return <li className={styles.todo} onClick={props.handleTodoDetail} >
+    return <li className={styles.todo} onClick={props.openTodoDetail}>
         <div className={styles.id}>{id}</div>
-        <div className={styles.title} >
+        <div className={styles.title}>
           {title}
           {before.map(todo => referTodoId(todo))}
         </div>
         <div className={styles.created_at}>{created_at}</div>
         <div className={styles.updated_at}>{updated_at}</div>
-        <div className={styles.status} onClick={props.handleTodoStatus}>{status}</div>
+        <div className={styles.status} onClick={props.handleTodoStatus}>
+          {status}
+        </div>
+        {props.seeingTodoDetail && <TodoDetail title={"Todo Detail"} closeTodoDetail={props.closeTodoDetail} todo={props}/>
+        //todo={props.tpdo}
+        }
       </li>;
 }
 

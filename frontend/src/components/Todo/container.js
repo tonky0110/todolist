@@ -5,21 +5,28 @@ import Todo from './presenter';
 
 class Container extends Component {
   state = {
-    id: "",
-    title: "",
-    created_at: "",
-    updated_at: "",
-    status: ""
+    seeingTodoDetail: false
   };
   render() {
-      const { handleTodoDetail } = this.props;
     return (
       <Todo
         {...this.state}
         {...this.props}
-            handleTodoDetail={handleTodoDetail}
+        openTodoDetail={this._openTodoDetail}
+        closeTodoDetail={this._closeTodoDetail}
       />
     );
+  }
+  _openTodoDetail = () => {
+      console.log(this.props);
+      this.setState({
+          seeingTodoDetail: true
+      });
+  }
+  _closeTodoDetail = () => {
+      this.setState({
+          seeingTodoDetail: false
+      });
   }
 } 
 export default Container;
