@@ -29,9 +29,9 @@ urlpatterns = [
         name='done_todo'
     ),
     url(
-        regex=r'^(?P<todo_id>[0-9]+)/cancel/$',
-        view=views.CancelTodo.as_view(),
-        name='cancel_todo'
+        regex=r'^(?P<todo_id>[0-9]+)/doing/$',
+        view=views.DoingTodo.as_view(),
+        name='doing_todo'
     ),
     url(
         regex=r'^search/$',

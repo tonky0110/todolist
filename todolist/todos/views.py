@@ -22,40 +22,40 @@ class Todos(APIView):
 
     def post(self, request, format=None):
         user = request.user
-        print(user)
+        # print(user)
         title= request.data.get("title")
-        print(title)
+        # print(title)
         if not title:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         else:
-            print("title", title)
+            # print("title", title)
             new_todo = models.Todo.objects.create(creator=user, title=title)
 
-            print("new_todo: ", new_todo)
+            # print("new_todo: ", new_todo)
             serializer = serializers.TodoSerializer(data=new_todo)
             if serializer.is_valid():
-                new_todo.save(creator=user)
+                serializer.save(creator=user)
+                # new_todo.save() # creator=user
 
         beforeIds = request.data.get("beforeIds")
         if not beforeIds: # empty array
-            print("beforeIds is none.")
-            print("new_todo --", new_todo)
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+            pass
+            # print("beforeIds is none.")
+            # print("new_todo --", new_todo)
+            # return Response(data=serializer.data, status=status.HTTP_201_CREATED)
             
         else:
             beforeIds = beforeIds.split(",")
-            print("beforeIds:", beforeIds)
+            # print("beforeIds:", beforeIds)
             select_before_todos = models.Todo.objects.filter(creator=user, id__in=beforeIds)#.exclude(id=new_todo.id)
-            print("select_before_todos.count(): ", select_before_todos)
+            # print("select_before_todos.count(): ", select_before_todos)
             for select_before_todo in select_before_todos:
-                print("select_before_todo: ", select_before_todo)
+                # print("select_before_todo: ", select_before_todo)
                 new_refer = models.Refer.objects.create(creator=user, after=new_todo, before=select_before_todo)
                 new_refer.save()
                 # refer_serializer = serializers.ReferSerializer(new_refer)
-                # if refer_serializer.is_valid():
-                    
-
-            return Response(status=status.HTTP_201_CREATED)
+                # if refer_serializer.is_valid():            
+        return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
 
 
@@ -174,12 +174,13 @@ class DoneTodo(APIView):
     
     # {"status":"done"}
     def put(self, request, todo_id, format=None):
+        print("DoneTodo _ put ")
         # todo status is done update
         user = request.user
-
+        print("user: ", user)
         try: 
             todo = models.Todo.objects.get(id=todo_id, creator=user, status="doing")
-
+            print("todo: ", todo)
             befores = models.Refer.objects.filter(creator=user, after=todo).values("before")
             for before in befores:
                 try:
@@ -203,7 +204,7 @@ class DoneTodo(APIView):
 
       
         
-class CancelTodo(APIView):
+class DoingTodo(APIView):
     # {"status":"doing"}
     def put(self, request, todo_id, format=None):
         # todo status is done update

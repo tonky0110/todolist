@@ -114,8 +114,8 @@ function applySaveToken(state, action){
 }
 function applyLogout(state, action){
     localStorage.removeItem("jwt");
-
-    return { isLoggedIn: false };
+    console.log("logout: ", state);
+    return { isLoggedIn: false, };
 }
 // exports
 const actionCreators = {

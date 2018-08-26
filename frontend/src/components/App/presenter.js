@@ -5,6 +5,8 @@ import styles from './styles.scss';
 import Auth from "components/Auth";
 import Plan from "components/Plan";
 import Navigation from 'components/Navigation';
+import TodoForm from "components/TodoForm";
+
 
 const App = props => [
     //Nav
@@ -20,7 +22,7 @@ App.propTypes = {
 const PrivateRoutes = props => (
   <Switch>
     <Route key="1" exact path="/" component={Plan} />
-    <Route key="2" path="/explore" render={() => "explore"} />
+    <Route key="2" path="/addTodo" component={TodoForm} />
   </Switch>
 );
 
