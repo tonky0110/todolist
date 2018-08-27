@@ -17,8 +17,7 @@ const TodoForm = props => (
         type="text"
         placeholder={"beforeIds"}
         className={formStyles.textInput}
-        //value={JSON.stringify(props.beforeIdsValue)}
-        value={beforeIds(props.beforeIdsValue)}
+        value={props.beforeIdsValue}
         onChange={props.handleInputChanage}
         name="beforeIds"
       />
@@ -27,18 +26,11 @@ const TodoForm = props => (
   </div>
 );
 
-const beforeIds = beforeIdsValue => {
-  console.log(beforeIdsValue);
-  if (beforeIdsValue){
-    return beforeIdsValue.map(beforeId => beforeId.before);
-  }
-  return '';
-}
-  ;
+
 
 TodoForm.propTypes = {
     titleValue: PropTypes.string.isRequired,
-    beforeIdsValue: PropTypes.array.isRequired,
+    beforeIdsValue: PropTypes.string.isRequired,
     handleInputChanage: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired
 };

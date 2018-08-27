@@ -96,6 +96,35 @@ function doingTodo(todoId) {
     }
 }
 
+function updateTodo(todoId, title, beforeIds) {
+  return (dispatch, getState) => {
+      console.log("updateTodo: ", todoId, title, beforeIds);
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/todos/${todoId}/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title,
+        beforeIds
+      })
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+          return response.json(); // ???
+      })
+      .then(json => {
+          console.log(json); // ???
+      });
+  };
+}
+
 function submitTodo(title, beforeIds) {
     return (dispatch, getState) => {
         const { user: { token } } = getState();
@@ -114,12 +143,13 @@ function submitTodo(title, beforeIds) {
             if (response.status === 401) {
               dispatch(userActions.logout());
             }
-            return response.json();
+              return response.json(); // ???
           })
           .then(json => {
               //console.log("submitTodo: ", json);
               //dispatch(getTodo());
               //dispatch(push("/"));
+               // ???
           });
     };
 }
@@ -208,11 +238,12 @@ function applyDoingTodo(state, action){
 
 // exports
 const actionCreators = {
-    getTodo,
-    doneTodo,
-    doingTodo,
-    submitTodo,
-    searchByTerm,
+  getTodo,
+  doneTodo,
+  doingTodo,
+  submitTodo,
+  searchByTerm,
+  updateTodo,
 };
 
 export { actionCreators };

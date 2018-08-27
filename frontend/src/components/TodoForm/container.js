@@ -4,10 +4,11 @@ import TodoForm from "./presenter";
 class Container extends Component {
   constructor(props) {
     super(props);
+    
 
     this.state = {
       title: props.title || "",
-      beforeIds: props.before || []
+      beforeIds: props.before || ""
     };
   }
 
