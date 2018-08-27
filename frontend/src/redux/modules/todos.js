@@ -114,7 +114,7 @@ function submitTodo(title, beforeIds) {
             return response.json();
           })
           .then(json => {
-              console.log("submitTodo: ", json);
+              //console.log("submitTodo: ", json);
               dispatch(getTodo());
               dispatch(push("/"));
           });
@@ -138,7 +138,7 @@ function searchByTerm(searchTerm) {
             return response.json();
         })
         .then(json => {
-            console.log(json);
+            //console.log(json);
             dispatch(setTodo(json));
         });
     };
@@ -169,7 +169,7 @@ function reducer(state = initialState, action) {
 // recuder functions
 function applySetTodo(state, action) {
     const { todo } = action;
-    console.log( todo );
+    //console.log( todo );
   return {
     ...state,
       todo

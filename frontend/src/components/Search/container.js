@@ -12,18 +12,34 @@ class Container extends Component {
   };
   componentDidMount() {
     const { searchByTerm } = this.props;
-    console.log(this.props);
+      console.log("~~~~~~~~~~~~~~~~~2~~~~~~~~~~~~~~~~~~~~")
     searchByTerm();
   }
-  componentWillReceiveProps(nextProps){
-      if(nextProps.todo){
-          this.setState({
-              loading: false
-          })
-      }
-  }
+    componentWillReceiveProps = nextProps => {
+        console.log("~~~~~~~~~~~~~~~~~1~~~~~~~~~~~~~~~~~~~~");
+        const { searchByTerm, match, location:{pathname} } = this.props;
+        if (nextProps.todo) {
+            this.setState({
+                loading: false
+            });
+        }
+
+        console.log("this.props.location.pathname: ", pathname);
+        console.log("nextProps.location.pathname: ", nextProps.location.pathname);
+        console.log("this.props.match: ", match);
+        console.log("nextProps.match: ", nextProps.match);
+        // if (nextProps.match !== this.props.match) {
+        //   searchByTerm();
+        // }
+        if (nextProps.location.pathname !== pathname) {
+            console.log("1~~~~~~~~~~~~~~~~~1~~~~~~~~~~~~~~~~~~~~1")
+          searchByTerm();
+        }
+    };
   render() {
-    return <Search {...this.state} />;
+      const { todo }= this.props;
+      
+      return <Search {...this.state} todo={todo}/>;
   }
 }
 

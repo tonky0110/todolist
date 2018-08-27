@@ -13,7 +13,7 @@ const Todo = props => {
         status, 
         before
     } = props;
-    return <li className={styles.todo} onClick={props.openTodoDetail}>
+    return <li className={styles.todo} onClick={null}>
         <div className={styles.id}>{id}</div>
         <div className={styles.title}>
           {title}

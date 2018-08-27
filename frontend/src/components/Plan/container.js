@@ -24,7 +24,7 @@ class Container extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.todo) {
-        console.log("nextProps.todo: ", nextProps.todo);
+      //console.log("nextProps.todo: ", nextProps.todo);
       this.setState({
         loading: false
       });
@@ -32,7 +32,7 @@ class Container extends Component {
   }
   render() {
     const { todo } = this.props;
-      console.log("state: ", this.state, "todo: ", todo);
+    //console.log("state: ", this.state, "todo: ", todo);
     return <Plan {...this.state} todo={todo} />;
   }
 }

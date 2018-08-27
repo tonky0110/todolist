@@ -18,7 +18,7 @@ class Container extends Component {
     );
   }
   _openTodoDetail = () => {
-      console.log(this.props);
+      //console.log(this.props);
       this.setState({
           seeingTodoDetail: true
       });
