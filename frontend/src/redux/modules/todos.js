@@ -15,6 +15,7 @@ function setTodo(todo){
         todo
     }
 }
+
 function addTodo(title, beforeIds){
     return { 
         type: ADD_TODO,
@@ -29,6 +30,7 @@ function doDoneTodo(todoId){
         todoId
     }
 }
+
 function doDoingTodo(todoId) {
   return {
     type: DOING_TODO,
@@ -74,6 +76,7 @@ function doneTodo(todoId) {
         });
     }
 }
+
 function doingTodo(todoId) {
     return (dispatch, getState) => {
         dispatch(doDoingTodo(todoId));
@@ -115,8 +118,8 @@ function submitTodo(title, beforeIds) {
           })
           .then(json => {
               //console.log("submitTodo: ", json);
-              dispatch(getTodo());
-              dispatch(push("/"));
+              //dispatch(getTodo());
+              //dispatch(push("/"));
           });
     };
 }
@@ -124,7 +127,7 @@ function submitTodo(title, beforeIds) {
 function searchByTerm(searchTerm) {
     return (dispatch, getState) => {
         const { user: { token } } = getState();
-        
+        console.log("searchTerm: ", searchTerm);
         fetch(`/todos/search/?terms=${searchTerm}`, {
             method: "GET",
             headers: {
@@ -138,7 +141,7 @@ function searchByTerm(searchTerm) {
             return response.json();
         })
         .then(json => {
-            //console.log(json);
+            console.log("searchByTerm fetch: ", json);
             dispatch(setTodo(json));
         });
     };
@@ -163,8 +166,6 @@ function reducer(state = initialState, action) {
         return state;
     }
 }
-
-
 
 // recuder functions
 function applySetTodo(state, action) {
@@ -192,6 +193,7 @@ function applyDoneTodo(state, action){
     });
     return { ...state, todo: updatedTodo };
 }
+
 function applyDoingTodo(state, action){
     const { todoId } = action;
     const { todo } = state;
@@ -203,6 +205,7 @@ function applyDoingTodo(state, action){
     });
     return { ...state, todo: updatedTodo };
 }
+
 // exports
 const actionCreators = {
     getTodo,

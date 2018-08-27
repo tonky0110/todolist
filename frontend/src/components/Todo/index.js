@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Container from './container';
 import { actionCreators as todoActions } from 'redux/modules/todos';
-import { Redirect } from "react-router-dom";
+import { push } from "react-router-redux";
 // const mapStateToProps = ( state, ownProps) => {
 //     console.log(state);
 // }
@@ -18,8 +18,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 dispatch(todoActions.doingTodo(id));
             }
         },
-        handleTodoDetail: () => {
-            console.log("ownProps: ", ownProps);
+        showTodo: (todoId) => {
+            // console.log("ownProps: ", ownProps);
+            //dispatch(push(`/${todoId}`));
+            dispatch(push(`/todo/${todoId}`));
         }
     }
 }

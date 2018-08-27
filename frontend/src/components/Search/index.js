@@ -3,7 +3,10 @@ import Container from './container';
 import { actionCreators as todoActions } from 'redux/modules/todos';
 
 const mapStateToProps = (state, ownProps) => {
-    const { todos: { todo }, routing: { location }} = state;
+    const { todos: { todo }, routing: { location } } = state;
+
+    console.log("location: ", location);
+
     return {
         todo, 
         location
@@ -11,13 +14,11 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const { match: { params: { searthTerm } } } = ownProps;
-    return {
-        searchByTerm: () => {
-            console.log("searthTerm: ", searthTerm);
-            dispatch(todoActions.searchByTerm(searthTerm));
-        }
-    }
+    // const { match: { params: { searthTerm } } } = ownProps;
+    return { searchByTerm: searthTerm => {
+        //console.log("searthTerm: ", searthTerm);
+        dispatch(todoActions.searchByTerm(searthTerm));
+      } };
 }
 
 export default connect(

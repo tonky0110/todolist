@@ -45,7 +45,7 @@ const RenderTodoDetail = props => {
                 type="text"
                 prlaceholder="before Todo"
                 className={styles.textInput}
-                value={todo.before.map(before => before.before+",")}
+                value={beforeIds(todo.before)}
                 onChange={props.handleInputChange}
                 name="beforeIds"
             />
@@ -53,7 +53,12 @@ const RenderTodoDetail = props => {
     );
 };
 
-
+const  beforeIds = (before) => {
+    if( before ){
+        return before.map(before => before.before+',')
+    }
+    return "";
+}
 RenderTodoDetail.propTypes = {};
 
 RenderTodoDetail.propTypes = {
