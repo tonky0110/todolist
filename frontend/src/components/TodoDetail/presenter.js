@@ -43,11 +43,11 @@ const RenderTodoDetail = props => {
             />
             <input
                 type="text"
-                prlaceholder="title"
+                prlaceholder="before Todo"
                 className={styles.textInput}
                 value={todo.before.map(before => before.before+",")}
                 onChange={props.handleInputChange}
-                name="title"
+                name="beforeIds"
             />
         </div>
     );

@@ -121,6 +121,29 @@ function submitTodo(title, beforeIds) {
     };
 }
 
+function searchByTerm(searchTerm) {
+    return (dispatch, getState) => {
+        const { user: { token } } = getState();
+        
+        fetch(`/todos/search/?terms=${searchTerm}`, {
+            method: "GET",
+            headers: {
+                Authorization: `JWT ${token}`,
+            }
+        })
+        .then(response => {
+            if (response.status === 401) {
+                dispatch(userActions.logout());
+            }
+            return response.json();
+        })
+        .then(json => {
+            console.log(json);
+            dispatch(setTodo(json));
+        });
+    };
+}
+
 // initial state
 const initialState = {
 };
@@ -146,6 +169,7 @@ function reducer(state = initialState, action) {
 // recuder functions
 function applySetTodo(state, action) {
     const { todo } = action;
+    console.log( todo );
   return {
     ...state,
       todo
@@ -181,10 +205,11 @@ function applyDoingTodo(state, action){
 }
 // exports
 const actionCreators = {
-  getTodo,
-  doneTodo,
-  doingTodo,
-  submitTodo,
+    getTodo,
+    doneTodo,
+    doingTodo,
+    submitTodo,
+    searchByTerm,
 };
 
 export { actionCreators };

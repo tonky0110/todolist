@@ -5,7 +5,6 @@ import { actionCreators as todoActions } from 'redux/modules/todos';
 const mapStateToProps = (state, ownProps) => {
     const { id, title, status, before, updated_at, created_at} = state;
     console.log("todoFrom", state);
-
 }
 const mapDispatchToProps = ( dispatch, ownProps ) => {
     return {

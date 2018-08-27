@@ -6,7 +6,7 @@ import Auth from "components/Auth";
 import Plan from "components/Plan";
 import Navigation from 'components/Navigation';
 import TodoForm from "components/TodoForm";
-
+import Search from "components/Search";
 
 const App = props => [
     //Nav
@@ -21,8 +21,9 @@ App.propTypes = {
 };
 const PrivateRoutes = props => (
   <Switch>
-    <Route key="1" exact path="/" component={Plan} />
-    <Route key="2" path="/addTodo" component={TodoForm} />
+    <Route exact path="/" component={Plan} />
+    <Route path="/search/:searthTerm" component={Search} />
+    <Route path="/addTodo" component={TodoForm} />
   </Switch>
 );
 
