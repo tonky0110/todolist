@@ -12,11 +12,7 @@ const Navigation = props => (
     <div className={styles.inner}>
       <div className={styles.column}>
         <Link to="/">
-          <img
-            src={require("images/logo.png")}
-            className={styles.logo}
-            alt={"Logo"}
-          />
+          <div><span>Todo List</span></div>
         </Link>
       </div>
       <div className={styles.column}>

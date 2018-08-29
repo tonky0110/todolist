@@ -9,7 +9,6 @@
     
     .column {
         margin-bottom: 15px;
-        
         width: 100%;
         @include breakpoint("phone-tablet"){
             margin-bottom:0;

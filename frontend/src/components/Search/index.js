@@ -4,7 +4,7 @@ import { actionCreators as todoActions } from 'redux/modules/todos';
 
 const mapStateToProps = (state, ownProps) => {
     const { todos: { todo }, routing: { location } } = state;
-
+    console.log("todo: ", todo);
     console.log("location: ", location);
 
     return {

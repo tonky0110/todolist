@@ -14,12 +14,10 @@ class Container extends Component {
 
   componentDidMount() {
     const { searchByTerm } = this.props;
-    console.log("~~~~~~~~~~~~~~~~~2~~~~~~~~~~~~~~~~~~~~");
     searchByTerm(this.props.match.params.searthTerm);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("~~~~~~~~~~~~~~~~~1~~~~~~~~~~~~~~~~~~~~");
     const {
       searchByTerm,
       location: { pathname }
@@ -31,17 +29,8 @@ class Container extends Component {
       });
     }
 
-    // if (nextProps.match !== this.props.match) {
-    //   searchByTerm();
-    // }
-    console.log("nextProps.location.pathname : ", nextProps.location);
-    console.log("this.props.location.pathname : ", pathname);
-    console.log(this.props.match.params.searthTerm);
-
     if (nextProps.location.pathname !== pathname) {
-      console.log("1~~~~~~~~~~~~~~~~~1~~~~~~~~~~~~~~~~~~~~1");
       searchByTerm(nextProps.match.params.searthTerm);
-      console.log("2~~~~~~~~~~~~~~~~~2~~~~~~~~~~~~~~~~~~~~2");
     }
   }
   

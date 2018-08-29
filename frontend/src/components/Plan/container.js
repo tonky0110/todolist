@@ -14,7 +14,8 @@ class Container extends Component {
 
   componentDidMount() {
       const { getTodo } = this.props;
-      if(!this.props.todo){
+      const { todo } = this.props;
+      if(!todo){
           getTodo();
       }else {
           this.setState({

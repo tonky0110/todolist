@@ -1,6 +1,5 @@
 // imports
 
-
 // actions
 const SAVE_TOKEN = 'SAVE_TOKEN';
 const LOG_OUT = 'LOG_OUT';

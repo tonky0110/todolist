@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import formStyles from "components/shared/formStyles.scss";
+import formStyles from "./styles.scss";
 
-const TodoForm = props => (
-  <div className={formStyles.formComponent}>
+const TodoForm = props => {
+    
+  return (<div className={formStyles.formComponent}>
     <form className={formStyles.form} onSubmit={props.handleSubmit}>
       <input
         type="text"
@@ -23,9 +24,8 @@ const TodoForm = props => (
       />
       <input type="submit" value={"Add Todo"} className={formStyles.button} />
     </form>
-  </div>
-);
-
+  </div>);
+};
 
 
 TodoForm.propTypes = {

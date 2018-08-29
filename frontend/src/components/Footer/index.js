@@ -5,7 +5,7 @@ import Container from './container';
 const mapStateToProps = ( state, ownProps) => {
     
     const { todos} = state;
-    console.log( todos );
+    console.log( "footer: ", todos );
     return todos;
 }
 export default connect(

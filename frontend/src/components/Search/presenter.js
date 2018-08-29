@@ -11,9 +11,10 @@ const Search = props => {
         <div className={Styles.section}>
             {props.loading && <Loading />}
             {!props.loading && 
-              props.todo.length > 0 && (
+                props.todo.length >= 0 && (
                   <RenderTodoSearch todo ={props.todo} />
-              )}
+              )
+              }
         </div>
     </div>
   );

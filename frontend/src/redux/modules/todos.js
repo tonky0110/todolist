@@ -3,12 +3,18 @@ import { routerMiddleware, push } from "react-router-redux";
 import { actionCreators as userActions } from 'redux/modules/user';
 
 // actions
+const FREE_TODO = "FREE_TODO";
 const SET_TODO = "SET_TODO";
 const ADD_TODO = "ADD_TODO";
 const DONE_TODO = "DONE_TODO";
 const DOING_TODO = "DOING_TODO";
 
 // action creators
+function freeTodo(){
+    return {
+        type: FREE_TODO
+    }
+}
 function setTodo(todo){
     return {
         type: SET_TODO,
@@ -117,11 +123,9 @@ function updateTodo(todoId, title, beforeIds) {
         if (response.status === 401) {
           dispatch(userActions.logout());
         }
-          return response.json(); // ???
+          dispatch(getTodo());
+          dispatch(push(`/`)); 
       })
-      .then(json => {
-          console.log(json); // ???
-      });
   };
 }
 
@@ -146,7 +150,8 @@ function submitTodo(title, beforeIds) {
               return response.json(); // ???
           })
           .then(json => {
-              //console.log("submitTodo: ", json);
+              dispatch(getTodo());
+              
               //dispatch(getTodo());
               //dispatch(push("/"));
                // ???
@@ -192,6 +197,8 @@ function reducer(state = initialState, action) {
             return applyDoneTodo(state, action);
         case DOING_TODO:
             return applyDoingTodo(state, action);
+        case FREE_TODO:
+            return applyFreeTodo(state, action);
         default:
         return state;
     }
@@ -236,8 +243,13 @@ function applyDoingTodo(state, action){
     return { ...state, todo: updatedTodo };
 }
 
+function applyFreeTodo(state, action) {
+    return null;
+}
+
 // exports
 const actionCreators = {
+    freeTodo,
   getTodo,
   doneTodo,
   doingTodo,

@@ -7,9 +7,9 @@ const Todo = props => {
   //console.log(props);
   const { id, title, created_at, updated_at, status, before, showTodo } = props;
 
-  return <li className={styles.todo} onClick={() => showTodo(id)}>
+  return <li className={styles.todo}>
       <div className={styles.id}>{id}</div>
-      <div className={styles.title}>
+    <div className={styles.title} onClick={() => showTodo(id)}>
         {title}
         {before.map(todo => referTodoId(todo))}
       </div>

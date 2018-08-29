@@ -3,7 +3,7 @@ import Footer from "./presenter";
 
 const Container = props => {
     const todo = props;
-    console.log("todo: ", todo);
+    console.log("footer container todo: ", todo);
     return (
         <Footer {...props}/>
     );
